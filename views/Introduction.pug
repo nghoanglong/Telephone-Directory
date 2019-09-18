@@ -1,0 +1,13 @@
+h1 Learning express
+form(action="/users/search" method="GET")
+    label Name: 
+    input(type="text" name="name")
+
+    button Search
+p User List
+ul
+    each user in users
+        li
+            span= user.name
+            a(href='/users/' + user.id) Information
+a(href="/users/create") Create User
