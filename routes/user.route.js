@@ -1,12 +1,15 @@
 var express = require('express');
-var controllerFunc = require('../Controller/func.response');
+var controllerUser = require('../Controller/user.response');
+var userValidate = require('../Middleware/user.middleware');
 var router = express.Router();
 
 
 
-router.get('/search',controllerFunc.getSearchUser)
-      .get('/create',controllerFunc.getCreateUser)
-      .post('/create',controllerFunc.postCreateUser)
-      .get('/:id',controllerFunc.getInformationUser)
+router.get('/search',controllerUser.getSearchUser)
+      .get('/create',controllerUser.getCreateUser)
+      .post('/create',userValidate.checkInputPostCreate,controllerUser.postCreateUser)
+      .get('/view/:id',controllerUser.getInformationUser)
+      .get('/home',controllerUser.getBackHome)
+
 
 module.exports = router;

@@ -1,0 +1,14 @@
+extends ../layouts/common.pug
+block content
+    h2 Login
+    if errors 
+        each error in errors
+            .alert.alert-danger= error
+    form(action="/auth/login" method="POST")
+        div(class="form-group")
+            label Email
+            input(type="text", name="email",class="form-control w-50",placeholder="User Name",value= value ? value.email : "")
+        div(class="form-group")
+            label Password
+            input(type="password",name="password",class="form-control w-50",placeholder="Password",value= value ? value.password : "")
+        button(class="btn btn-primary") Login  

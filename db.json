@@ -2,19 +2,31 @@
   "users": [
     {
       "name": "Hoang Long",
+      "phone": "0971438076",
+      "email": "hoanglong.hcmus@gmail.com",
+      "password": "202cb962ac59075b964b07152d234b70",
       "id": "Cxwlv1_"
     },
     {
-      "name": "Ninh Binh",
-      "id": "disgngd"
+      "name": "Minh Quan",
+      "phone": "0936475891",
+      "email": "minhquan@gmail.com",
+      "password": "81dc9bdb52d04dc20036dbd8313ed055",
+      "id": "l8s8KLvx"
     },
     {
-      "name": "Minh Quan",
-      "id": "r-QgiuF"
+      "name": "Ninh Binh",
+      "phone": "0937465834",
+      "email": "ninhbinh@gmail.com",
+      "password": "827ccb0eea8a706c4c34a16891f84e7b",
+      "id": "OxGm7v1O"
     },
     {
       "name": "Trung Quach",
-      "id": "BQp1nNp"
+      "phone": "0273847527",
+      "email": "trungquach@gmail.com",
+      "password": "e10adc3949ba59abbe56e057f20f883e",
+      "id": "XGsWefVI"
     }
   ]
 }

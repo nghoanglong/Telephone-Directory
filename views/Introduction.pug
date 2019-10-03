@@ -1,13 +1,29 @@
-h1 Learning express
-form(action="/users/search" method="GET")
-    label Name: 
-    input(type="text" name="name")
+extends ./layouts/common.pug
+block content
+        form(action="/users/search", method="GET",class="d-flex justify-content-center")
+            input(type="text",name="q",class="form-control w-75 p-2",placeholder="Enter name")
 
-    button Search
-p User List
-ul
-    each user in users
-        li
-            span= user.name
-            a(href='/users/' + user.id) Information
-a(href="/users/create") Create User
+            button(class="btn btn-info ml-3" ) Search
+        table(class="table table-hover mt-5")
+            thead
+                tr
+                    th(scope='col') Name
+                    th(scope='col') Phone
+                    th(scope='col') Action
+            tbody
+                if Array.isArray(users)
+                    each user in users
+                        tr
+                            td= user.name
+                            td= user.phone
+                            td
+                                a(href='/users/view/' + user.id,class="ml-3") View
+                else
+                    tr
+                        td= users.name
+                        td= users.phone
+                        td
+                            a(href='/users/view/' + users.id,class="ml-3") View
+               
+       
+        a(href="/users/create",class="btn btn-outline-info mt-4") Create New User
