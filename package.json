@@ -11,13 +11,18 @@
   "dependencies": {
     "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
-    "lowdb": "^1.0.0",
     "md5": "^2.2.1",
-    "pug": "^2.0.4",
-    "shortid": "^2.2.15"
+    "mongoose": "^5.7.3",
+    "pug": "^2.0.4"
   },
-  "devDependencies": {
-    "nodemon": "^1.19.2"
+  "devDependencies": {},
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nghoanglong/save-phone-number.git"
   },
-  "description": ""
+  "bugs": {
+    "url": "https://github.com/nghoanglong/save-phone-number/issues"
+  },
+  "homepage": "https://github.com/nghoanglong/save-phone-number#readme"
 }

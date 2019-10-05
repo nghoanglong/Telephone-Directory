@@ -1,16 +1,16 @@
-var db = require('../database/db');
+var usersList = require('../Models/users.db')
 var md5 = require('md5');
-const shortid = require('shortid');
+
 
 //set root folder
 const dirFather = process.cwd();
 
 //Chức năng search user trong list
-function getSearchUser(req,res){
+async function getSearchUser(req,res){
     let query = req.query.q;
-    var matchUsers = db.get('users')
-                        .find({ name: query })
-                        .value()
+    var matchUsers = await usersList.findOne({name: query},function(err,data){
+        return data;
+    });
     res.render(dirFather + "/views/Introduction.pug",{
         users: matchUsers,
     });
@@ -21,20 +21,28 @@ function getCreateUser(req,res){
     res.render(dirFather + "/views/users/creatuser.pug");
 }
 function postCreateUser(req,res){
-    req.body.id = shortid.generate();
     req.body.password = md5(req.body.password); //harsh password using md5
-    db.get('users')
-        .push(req.body)
-        .write();
+    var newUser = new usersList({
+        name: req.body.name,
+        phone: req.body.phone,
+        email: req.body.email,
+        password: req.body.password
+    });
+    newUser.save(function(err){
+        if(err){
+            return handleError(err);
+        }
+    })
+    
     res.redirect('/');
 }
 
 //Xử lý khi nhận request view information của user
-function getInformationUser(req,res){
+async function getInformationUser(req,res){
     var userID = req.params.id;
-    var feature = db.get('users')
-                    .find({id: userID})
-                    .value()
+    var feature = await usersList.findOne({id: userID},function(err,data){
+        return data;
+    });
     res.render(dirFather + "/views/users/user.pug",{
         users: feature
     });

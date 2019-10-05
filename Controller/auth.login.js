@@ -1,17 +1,18 @@
-var db = require('../database/db');
 var md5 = require('md5');
+var usersList = require('../Models/users.db')
 
 //Xử lý request liên quan tới trang login và validate user
 function getUserLogin(req,res){
     res.render(process.cwd() +  '/views/login/userLogin.pug');
 }
-function postUserLogin(req,res){
+async function postUserLogin(req,res){
     var email = req.body.email;
     var password = md5(req.body.password);
-    var user = db.get('users')
-                 .find({email: email})
-                 .value()
-    if(typeof user !== 'object'){
+    var user = await usersList.findOne({email: email},function(err,data){
+        return data;
+    });
+                            
+    if(!user){
         res.render(process.cwd() +  '/views/login/userLogin.pug',{
             value: req.body,
             errors: ['User does not exist']
@@ -25,7 +26,7 @@ function postUserLogin(req,res){
         })
         return;
     }
-    res.cookie('userCookie',user.id,{
+    res.cookie('userCookie',user._id,{
         signed: true
     });
     res.redirect('/');

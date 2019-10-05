@@ -1,4 +1,4 @@
-var db = require('../database/db');
+var usersList = require('../Models/users.db')
 const dirFather = process.cwd();
 
 //Kiểm tra khi người dùng create 1 user mới thì có nhập đầy đủ thông tin chưa
@@ -46,10 +46,11 @@ function checkInputLogin(req,res,next){
 }
 
 //Xử lý check Cookie của user, chưa có cookie -> ko cho vào trang chủ và các chức năng
-function forceUserLogin(req,res,next){
-    var checkCookie = db.get('users')
-                        .find({id: req.signedCookies.userCookie})
-                        .value()
+async function forceUserLogin(req,res,next){
+    var checkCookie = await usersList.findOne({_id: req.signedCookies.userCookie},function(err,data){
+        return data;
+    });
+ 
     if(!req.signedCookies.userCookie){
         res.redirect('/auth/login');
         return;
