@@ -8,11 +8,12 @@ const dirFather = process.cwd();
 //Chức năng search user trong list
 async function getSearchUser(req,res){
     let query = req.query.q;
-    var matchUsers = await usersList.findOne({name: query},function(err,data){
+    var matchUsers = await usersList.find({name: query},function(err,data){
         return data;
     });
+
     res.render(dirFather + "/views/Introduction.pug",{
-        users: matchUsers,
+        users: matchUsers
     });
 }
 
