@@ -7,6 +7,6 @@ var usersSchema = new mongoose.Schema({
     password: String,
 });
 
-var listUsers = mongoose.model('listUsers', usersSchema,'users');
+var usersList = mongoose.model('usersList', usersSchema,'users');
 
-module.exports = listUsers;
+module.exports = usersList;

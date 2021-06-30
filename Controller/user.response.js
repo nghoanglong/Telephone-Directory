@@ -22,7 +22,7 @@ function getCreateUser(req,res){
     res.render(dirFather + "/views/users/creatuser.pug");
 }
 function postCreateUser(req,res){
-    req.body.password = md5(req.body.password); //harsh password using md5
+    req.body.password = req.body.password; //harsh password using md5
     var newUser = new usersList({
         name: req.body.name,
         phone: req.body.phone,

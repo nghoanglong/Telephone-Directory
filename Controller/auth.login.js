@@ -7,7 +7,7 @@ function getUserLogin(req,res){
 }
 async function postUserLogin(req,res){
     var email = req.body.email;
-    var password = md5(req.body.password);
+    var password = req.body.password;
     var user = await usersList.findOne({email: email},function(err,data){
         return data;
     });
